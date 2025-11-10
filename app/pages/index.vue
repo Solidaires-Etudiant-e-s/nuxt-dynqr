@@ -1,0 +1,57 @@
+<template>
+  <div class="container mx-auto p-4 space-y-6">
+    <div class="flex items-center justify-between gap-3 flex-col sm:flex-row">
+      <div>
+        <h1 class="text-2xl font-bold">{{ $t('index.hi', { name: nameDisplay }) }}</h1>
+        <p class="text-gray-600">
+          {{ $t('index.summary', { count: links.length, views: totalViews }) }}
+        </p>
+      </div>
+      <UButton to="/generate" icon="tabler:plus" class="w-full sm:w-auto">{{ $t('index.createNew') }}</UButton>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <UCard v-for="item in links" :key="item.id">
+        <template #header>
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-semibold truncate">{{ item.title || item.slug }}</h3>
+              <p class="text-xs text-gray-500">/{{ item.slug }}</p>
+            </div>
+            <UBadge color="neutral" variant="soft">{{ $t('badges.views', { count: item.visitCount || 0 }) }}</UBadge>
+          </div>
+        </template>
+        <div class="space-y-2">
+          <p class="text-sm text-gray-600 break-all">{{ item.url }}</p>
+        </div>
+        <template #footer>
+          <div class="flex items-center gap-2">
+            <UButton size="sm" color="primary" :to="`/qr/${item.slug}`" icon="tabler:edit">{{ $t('common.manage') }}</UButton>
+            <UButton size="sm" :to="`/l/${item.slug}`" variant="soft"  target="_blank" icon="tabler:external-link">{{ $t('common.open') }}</UButton>
+          </div>
+        </template>
+      </UCard>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+const { links, refresh } = useLinks()
+
+const me = ref<{ username: string | null; role: string | null } | null>(null)
+const nameDisplay = computed(() => me.value?.username || 'you')
+
+const totalViews = computed(() => links.value.reduce((acc, l) => acc + (l.visitCount || 0), 0))
+
+const url = useRequestURL()
+const shortUrl = (slug: string) => `${url.protocol}//${url.host}/l/${slug}`
+
+onMounted(async () => {
+  try { await refresh() } catch (_) {}
+  try { me.value = await $fetch('/api/me') as any } catch (_) { me.value = { username: null, role: null } }
+})
+
+async function copy(text: string) {
+  try { await navigator.clipboard.writeText(text) } catch (_) {}
+}
+</script>

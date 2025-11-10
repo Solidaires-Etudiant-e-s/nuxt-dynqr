@@ -1,0 +1,113 @@
+{
+  "app": { "title": "Nuxt DynQR" },
+  "nav": {
+    "home": "Home",
+    "myQRCodes": "My QR Codes",
+    "create": "Create QR Code"
+  },
+  "common": {
+    "home": "Home",
+    "yes": "Yes",
+    "no": "No",
+    "open": "Open",
+    "copy": "Copy",
+    "manage": "Manage",
+    "save": "Save",
+    "delete": "Delete",
+    "cancel": "Cancel"
+  },
+  "generate": {
+    "title": "Generate a new link",
+    "url": "Destination URL",
+    "titleLabel": "Title (optional)",
+    "slug": "Custom slug (optional)",
+    "preview": "Preview",
+    "create": "Create",
+    "reset": "Reset",
+    "error": "Error"
+  },
+  "index": {
+    "hi": "Hi {name}",
+    "summary": "You currently have {count} QR codes with {views} views.",
+    "createNew": "Create new"
+  },
+  "qr": {
+    "title": "QR for: {slug}",
+    "views": "Views: {count}",
+    "active": "Active: {value}",
+    "copyUrl": "Copy URL",
+    "section": {
+      "qrcodes": "QR Codes",
+      "preview": "Preview",
+      "customize": "Customize",
+      "centerImage": "Center image"
+    },
+    "foreground": "Foreground color",
+    "background": "Background color",
+    "ecLevel": "Error correction level",
+    "transparentBg": "Transparent background (PNG)",
+    "chooseIcon": "Choose an icon",
+    "searchIcon": "Search icon...",
+    "loadingIcons": "Loading icons...",
+    "noIcons": "No icons found",
+    "source": {
+      "brand": "Brand",
+      "upload": "Upload",
+      "icon": "Icon"
+    },
+    "dots": "Dots",
+    "cornersSquare": "Corners (square)",
+    "cornersDot": "Corners (dot)",
+    "opt": {
+      "square": "Square",
+      "dots": "Dots",
+      "rounded": "Rounded",
+      "classy": "Classy",
+      "classyRounded": "Classy rounded",
+      "extraRounded": "Extra rounded",
+      "dot": "Dot"
+    },
+    "enableCenterImage": "Enable center image",
+    "centerImageSource": "Source",
+    "chooseBrand": "Choose brand image",
+    "uploadImage": "Upload image",
+    "centerSize": "Size (%)",
+    "rounded": "Rounded corners",
+    "save": "Save",
+    "reset": "Reset"
+  },
+  "validation": {
+    "invalidUrl": "Please enter a valid http(s) URL",
+    "invalidSlug": "Only letters, numbers, _ and - are allowed",
+    "titleTooLong": "Title is too long"
+  },
+  "badges": { "views": "{count} views" },
+  "status": {
+    "activated": "Activated",
+    "disabled": "Disabled"
+  },
+  "admin": {
+    "section": "Admin Panel",
+    "title": "QR Codes Administration",
+    "search": "Search…",
+    "empty": "No QR codes",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "delete": "Delete",
+    "qrList": "QR List",
+    "qrListDesc": "Browse and manage all QR links.",
+    "brand": "Marque",
+    "brandDesc": "Set a single brand logo used as QR center image.",
+    "brandLogo": "Brand logo",
+    "currentBrand": "Current brand",
+    "none": "None",
+    "logos": "Logos",
+    "defaultColors": "Default colors",
+    "brandImages": "Brand images",
+    "uploadImages": "Upload images",
+    "noImages": "No images uploaded",
+    "brandName": "Brand name",
+    "uploadImage": "Upload image",
+    "addBrand": "Add brand"
+  }
+}

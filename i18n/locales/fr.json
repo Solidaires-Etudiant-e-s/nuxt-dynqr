@@ -1,0 +1,113 @@
+{
+  "app": { "title": "Nuxt DynQR" },
+  "nav": {
+    "home": "Accueil",
+    "myQRCodes": "Mes QR codes",
+    "create": "Créer un QR code"
+  },
+  "common": {
+    "home": "Accueil",
+    "yes": "Oui",
+    "no": "Non",
+    "open": "Ouvrir",
+    "copy": "Copier",
+    "manage": "Gérer",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "cancel": "Annuler"
+  },
+  "generate": {
+    "title": "Générer un nouveau lien",
+    "url": "URL de destination",
+    "titleLabel": "Titre (optionnel)",
+    "slug": "Identifiant personnalisé (optionnel)",
+    "preview": "Aperçu",
+    "create": "Créer",
+    "reset": "Réinitialiser",
+    "error": "Erreur"
+  },
+  "index": {
+    "hi": "Salut {name}",
+    "summary": "Vous avez actuellement {count} QR codes avec {views} vues.",
+    "createNew": "Créer un nouveau"
+  },
+  "qr": {
+    "title": "QR pour : {slug}",
+    "views": "Vues : {count}",
+    "active": "Actif : {value}",
+    "copyUrl": "Copier l’URL",
+    "section": {
+      "qrcodes": "Codes QR",
+      "preview": "Aperçu",
+      "customize": "Personnaliser",
+      "centerImage": "Image centrale"
+    },
+    "foreground": "Couleur de premier plan",
+    "background": "Couleur d’arrière-plan",
+    "ecLevel": "Niveau de correction",
+    "transparentBg": "Arrière-plan transparent (PNG)",
+    "chooseIcon": "Choisir une icône",
+    "searchIcon": "Rechercher une icône...",
+    "loadingIcons": "Chargement des icônes...",
+    "noIcons": "Aucune icône trouvée",
+    "source": {
+      "brand": "Marque",
+      "upload": "Téléverser",
+      "icon": "Icône"
+    },
+    "dots": "Points",
+    "cornersSquare": "Coins (carré)",
+    "cornersDot": "Coins (point)",
+    "opt": {
+      "square": "Carré",
+      "dots": "Points",
+      "rounded": "Arrondi",
+      "classy": "Élégant",
+      "classyRounded": "Élégant arrondi",
+      "extraRounded": "Très arrondi",
+      "dot": "Point"
+    },
+    "enableCenterImage": "Activer l'image centrale",
+    "centerImageSource": "Source",
+    "chooseBrand": "Choisir une image de marque",
+    "uploadImage": "Télécharger une image",
+    "centerSize": "Taille (%)",
+    "rounded": "Coins arrondis",
+    "save": "Enregistrer",
+    "reset": "Réinitialiser"
+  },
+  "validation": {
+    "invalidUrl": "Veuillez saisir une URL http(s) valide",
+    "invalidSlug": "Seuls les caractères alphanumériques, _ et - sont autorisés",
+    "titleTooLong": "Le titre est trop long"
+  },
+  "badges": { "views": "{count} vues" },
+  "status": {
+    "activated": "Activé",
+    "disabled": "Désactivé"
+  },
+  "admin": {
+    "section": "Espace Administrateur",
+    "title": "Administration des QR codes",
+    "search": "Rechercher…",
+    "empty": "Aucun QR code",
+    "activate": "Activer",
+    "deactivate": "Désactiver",
+    "delete": "Supprimer",
+    "qrList": "Liste des QR",
+    "qrListDesc": "Parcourir et gérer tous les liens QR.",
+    "brand": "Logo de marque",
+    "brandDesc": "Définir un seul logo utilisé comme image centrale des QR.",
+    "brandLogo": "Logo de marque",
+    "currentBrand": "Marque actuelle",
+    "none": "Aucun",
+    "logos": "Logos",
+    "defaultColors": "Couleurs par défaut",
+    "brandImages": "Images de marque",
+    "uploadImages": "Téléverser des images",
+    "noImages": "Aucune image téléversée",
+    "brandName": "Nom de la marque",
+    "uploadImage": "Téléverser une image",
+    "addBrand": "Ajouter la marque"
+  }
+}

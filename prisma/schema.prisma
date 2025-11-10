@@ -1,0 +1,60 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql" // Prisma uses the MySQL connector for MariaDB
+  url      = env("DATABASE_URL")
+}
+
+model dqr_users {
+  username  String      @id @db.VarChar(191)
+  createdAt DateTime    @default(now())
+  links     dqr_links[]
+
+  @@map("dqr_users")
+}
+
+model dqr_links {
+  id            Int      @id @default(autoincrement())
+  slug          String   @unique @db.VarChar(64)
+  title         String?  @db.VarChar(191)
+  url           String   @db.Text
+  ownerUsername String   @map("owner_username") @db.VarChar(191)
+  visitCount    Int      @default(0)
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  owner dqr_users @relation(fields: [ownerUsername], references: [username], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([ownerUsername], map: "dqr_links_owner_idx")
+  @@index([slug], map: "dqr_links_slug_idx")
+  @@map("dqr_links")
+}
+
+model dqr_brands {
+  id             Int                @id @default(autoincrement())
+  name           String             @db.VarChar(191)
+  imageUrl       String             @map("image_url") @db.VarChar(255)
+  fgColor        String?            @map("fg_color") @db.VarChar(9)
+  bgColor        String?            @map("bg_color") @db.VarChar(9)
+  isActive       Boolean            @default(true)
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+  dqrBrandImages dqr_brand_images[]
+
+  @@map("dqr_brands")
+}
+
+model dqr_brand_images {
+  id        Int      @id @default(autoincrement())
+  brandId   Int      @map("brand_id")
+  imageUrl  String   @map("image_url") @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  brand dqr_brands @relation(fields: [brandId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@map("dqr_brand_images")
+}
