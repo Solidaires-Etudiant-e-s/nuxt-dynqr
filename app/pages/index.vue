@@ -37,6 +37,7 @@
 
 <script setup lang="ts">
 const { links, refresh } = useLinks()
+const { t } = useI18n()
 
 const me = ref<{ username: string | null; role: string | null } | null>(null)
 const nameDisplay = computed(() => me.value?.username || 'you')
@@ -45,6 +46,30 @@ const totalViews = computed(() => links.value.reduce((acc, l) => acc + (l.visitC
 
 const url = useRequestURL()
 const shortUrl = (slug: string) => `${url.protocol}//${url.host}/l/${slug}`
+
+const origin = computed(() => `${url.protocol}//${url.host}`)
+const pageUrl = computed(() => `${origin.value}/`)
+const title = computed(() => `${t('app.title')} – ${t('nav.home')}`)
+const description = computed(() => t('index.summary', { count: links.value.length, views: totalViews.value }))
+
+useHead(() => ({
+  title: title.value,
+  link: [
+    { rel: 'canonical', href: pageUrl.value },
+  ],
+  meta: [
+    { name: 'description', content: description.value },
+    { property: 'og:title', content: title.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: pageUrl.value },
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title.value },
+    { name: 'twitter:description', content: description.value },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
 
 onMounted(async () => {
   try { await refresh() } catch (_) {}

@@ -52,6 +52,30 @@ type CreatedLink = {
 
 const url = useRequestURL()
 const basePath = computed(() => `${url.protocol}//${url.host}`)
+const origin = computed(() => basePath.value)
+const pageUrl = computed(() => `${origin.value}/generate`)
+
+const title = computed(() => `${t('app.title')} – ${t('generate.title')}`)
+const description = computed(() => t('generate.title'))
+
+useHead(() => ({
+  title: title.value,
+  link: [
+    { rel: 'canonical', href: pageUrl.value },
+  ],
+  meta: [
+    { name: 'description', content: description.value },
+    { property: 'og:title', content: title.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: pageUrl.value },
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title.value },
+    { name: 'twitter:description', content: description.value },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
 
 const form = reactive({ url: '', slug: '', title: '' })
 const errors = reactive<{ url?: string; slug?: string; title?: string }>({})

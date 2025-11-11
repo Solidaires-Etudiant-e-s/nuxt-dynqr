@@ -36,6 +36,29 @@
 import type { ColumnDef } from '@tanstack/vue-table'
 const { items, refresh, toggleActive, remove } = useAdminLinks()
 const q = ref('')
+const { t } = useI18n()
+const url = useRequestURL()
+const origin = computed(() => `${url.protocol}//${url.host}`)
+const pageUrl = computed(() => `${origin.value}/admin/qr-list`)
+const title = computed(() => `${t('app.title')} – ${t('admin.qrList')}`)
+const description = computed(() => t('admin.qrListDesc'))
+
+useHead(() => ({
+  title: title.value,
+  link: [{ rel: 'canonical', href: pageUrl.value }],
+  meta: [
+    { name: 'description', content: description.value },
+    { property: 'og:title', content: title.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: pageUrl.value },
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title.value },
+    { name: 'twitter:description', content: description.value },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
 
 const columns: ColumnDef<any, any>[] = [
   { accessorKey: 'title', header: 'Titre' },

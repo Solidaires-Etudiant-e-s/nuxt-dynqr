@@ -142,6 +142,31 @@ const deleting = ref(false)
 
 const urlObj = useRequestURL()
 const shortUrl = computed(() => `${urlObj.protocol}//${urlObj.host}/l/${slug.value}`)
+const origin = computed(() => `${urlObj.protocol}//${urlObj.host}`)
+const pageUrl = computed(() => `${origin.value}/qr/${slug.value}`)
+const titleText = computed(() => (edit.title?.trim() ? edit.title : `/${slug.value}`))
+const pageTitle = computed(() => `${titleText.value} – ${t('app.title')}`)
+const description = computed(() => edit.url ? `Short link ${shortUrl.value} → ${edit.url}` : `Short link ${shortUrl.value}`)
+
+useHead(() => ({
+  title: pageTitle.value,
+  link: [
+    { rel: 'canonical', href: pageUrl.value },
+  ],
+  meta: [
+    { name: 'description', content: description.value },
+    { property: 'og:title', content: pageTitle.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:type', content: 'website' },
+    // Use the shareable short URL for better previews
+    { property: 'og:url', content: shortUrl.value },
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: pageTitle.value },
+    { name: 'twitter:description', content: description.value },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
 
 // QR state
 const qrContainerRef = ref<HTMLElement | null>(null)

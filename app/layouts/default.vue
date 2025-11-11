@@ -25,6 +25,18 @@ const { links, refresh } = useLinks()
 const { t } = useI18n()
 const { me, refreshMe } = useMe()
 
+const url = useRequestURL()
+const origin = computed(() => `${url.protocol}//${url.host}`)
+useHead(() => ({
+  meta: [
+    { property: 'og:site_name', content: t('app.title') },
+    { name: 'theme-color', content: '#ffffff' },
+    // Provide a default image as fallback
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
+
 const navigationMenu = computed<NavigationMenuItem[]>(() => {
   const base: NavigationMenuItem[] = [
     {

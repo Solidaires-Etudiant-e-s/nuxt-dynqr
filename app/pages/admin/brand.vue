@@ -56,6 +56,30 @@ const savingColors = ref(false)
 const multiRef = ref<HTMLInputElement | null>(null)
 const uploading = ref(false)
 
+const { t } = useI18n()
+const url = useRequestURL()
+const origin = computed(() => `${url.protocol}//${url.host}`)
+const pageUrl = computed(() => `${origin.value}/admin/brand`)
+const title = computed(() => `${t('app.title')} – ${t('admin.brand')}`)
+const description = computed(() => t('admin.brandDesc'))
+
+useHead(() => ({
+  title: title.value,
+  link: [{ rel: 'canonical', href: pageUrl.value }],
+  meta: [
+    { name: 'description', content: description.value },
+    { property: 'og:title', content: title.value },
+    { property: 'og:description', content: description.value },
+    { property: 'og:type', content: 'website' },
+    { property: 'og:url', content: pageUrl.value },
+    { property: 'og:image', content: `${origin.value}/favicon.png` },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:title', content: title.value },
+    { name: 'twitter:description', content: description.value },
+    { name: 'twitter:image', content: `${origin.value}/favicon.png` },
+  ],
+}))
+
 async function saveColors() {
   savingColors.value = true
   try { await updateColors({ fgColor: fgColor.value, bgColor: bgColor.value }) } finally { savingColors.value = false }
