@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 space-y-6">
     <div class="flex items-center justify-between gap-3 flex-col sm:flex-row">
       <div>
-        <h1 class="text-2xl font-bold">{{ $t('index.hi', { name: nameDisplay }) }}</h1>
+        <h1 class="text-2xl font-bold">{{ $t('index.hi', { name: nameDisplay }) }} <USkeleton v-if="!nameDisplay" class="h-5 w-40 inline-block" /></h1>
         <p class="text-gray-600">
           {{ $t('index.summary', { count: links.length, views: totalViews }) }}
         </p>
@@ -39,8 +39,8 @@
 const { links, refresh } = useLinks()
 const { t } = useI18n()
 
-const me = ref<{ username: string | null; role: string | null } | null>(null)
-const nameDisplay = computed(() => me.value?.username || 'you')
+const { data: me } = useFetch('/api/me', {lazy: true, {server: false})
+const nameDisplay = computed(() => me.value?.username )
 
 const totalViews = computed(() => links.value.reduce((acc, l) => acc + (l.visitCount || 0), 0))
 
@@ -73,7 +73,6 @@ useHead(() => ({
 
 onMounted(async () => {
   try { await refresh() } catch (_) {}
-  try { me.value = await $fetch('/api/me') as any } catch (_) { me.value = { username: null, role: null } }
 })
 
 async function copy(text: string) {
