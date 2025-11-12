@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 space-y-6">
     <div class="flex items-center justify-between gap-3 flex-col sm:flex-row">
       <div>
-        <h1 class="text-2xl font-bold">{{ $t('index.hi', { name: nameDisplay }) }} <USkeleton v-if="!nameDisplay" class="h-5 w-[170px] inline-block" /></h1>
+        <h1 class="text-2xl font-bold">{{ $t('index.hi', { name: nameDisplay }) }} <USkeleton v-if="!nameDisplay" class="h-5 w-40 inline-block" /></h1>
         <p class="text-gray-600">
           {{ $t('index.summary', { count: links.length, views: totalViews }) }}
         </p>
