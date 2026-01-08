@@ -6,23 +6,23 @@
       <UCard>
         <template #header>
           <div class="flex items-center gap-2">
-            <UIcon name="tabler:list-details" />
+            <UIcon name="mingcute:list-check-line" />
             <span>{{ $t('admin.qrList') }}</span>
           </div>
         </template>
         <p class="text-gray-600 mb-3">{{ $t('admin.qrListDesc') }}</p>
-        <UButton :to="'/admin/qr-list'" icon="tabler:arrow-right">{{ $t('common.open') }}</UButton>
+        <UButton :to="'/admin/qr-list'" icon="mingcute:arrow-right-line">{{ $t('common.open') }}</UButton>
       </UCard>
 
       <UCard>
         <template #header>
           <div class="flex items-center gap-2">
-            <UIcon name="tabler:brand-appgallery" />
+            <UIcon name="mingcute:grid-line" />
             <span>{{ $t('admin.brand') }}</span>
           </div>
         </template>
         <p class="text-gray-600 mb-3">{{ $t('admin.brandDesc') }}</p>
-        <UButton :to="'/admin/brand'" icon="tabler:arrow-right">{{ $t('common.open') }}</UButton>
+        <UButton :to="'/admin/brand'" icon="mingcute:arrow-right-line">{{ $t('common.open') }}</UButton>
       </UCard>
     </div>
   </div>

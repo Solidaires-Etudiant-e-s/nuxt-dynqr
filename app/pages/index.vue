@@ -7,7 +7,7 @@
           {{ $t('index.summary', { count: links.length, views: totalViews }) }}
         </p>
       </div>
-      <UButton to="/generate" icon="tabler:plus" class="w-full sm:w-auto">{{ $t('index.createNew') }}</UButton>
+      <UButton to="/generate" icon="mingcute:add-line" class="w-full sm:w-auto">{{ $t('index.createNew') }}</UButton>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -26,8 +26,8 @@
         </div>
         <template #footer>
           <div class="flex items-center gap-2">
-            <UButton size="sm" color="primary" :to="`/qr/${item.slug}`" icon="tabler:edit">{{ $t('common.manage') }}</UButton>
-            <UButton size="sm" :to="`/l/${item.slug}`" variant="soft"  target="_blank" icon="tabler:external-link">{{ $t('common.open') }}</UButton>
+            <UButton size="sm" color="primary" :to="`/qr/${item.slug}`" icon="mingcute:edit-line">{{ $t('common.manage') }}</UButton>
+            <UButton size="sm" :to="`/l/${item.slug}`" variant="soft"  target="_blank" icon="mingcute:external-link-line">{{ $t('common.open') }}</UButton>
           </div>
         </template>
       </UCard>

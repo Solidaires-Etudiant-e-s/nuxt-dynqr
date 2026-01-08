@@ -23,7 +23,7 @@ const filteredIcons = computed(() => {
   )
 })
 
-const ICONS_URL = 'https://raw.githubusercontent.com/iconify/icon-sets/refs/heads/master/json/tabler.json'
+const ICONS_URL = 'https://raw.githubusercontent.com/iconify/icon-sets/refs/heads/master/json/mingcute.json'
 
 onMounted(async () => {
   isLoading.value = true
@@ -57,14 +57,14 @@ function selectIcon(icon: string) {
   <div>
     <UButton @click="open" color="primary" variant="soft" class="w-full justify-start gap-3">
       <span class="w-8 h-8 flex items-center justify-center bg-primary-500 rounded-full">
-        <Icon v-if="modelValue" :icon="'tabler:' + modelValue" class="w-6 h-6 text-white" />
-        <Icon v-else icon="tabler:plus" class="w-6 h-6 text-white" />
+        <Icon v-if="modelValue" :icon="'mingcute:' + modelValue" class="w-6 h-6 text-white" />
+        <Icon v-else icon="mingcute:add-line" class="w-6 h-6 text-white" />
       </span>
       <span class="flex-1 text-left">
         <span class="text-sm">{{ placeholder || 'Select an icon' }}</span>
         <span v-if="modelValue" class="block text-xs text-gray-500">{{ modelValue }}</span>
       </span>
-      <Icon icon="tabler:chevron-down" class="w-4 h-4 text-gray-400" />
+      <Icon icon="mingcute:down-line" class="w-4 h-4 text-gray-400" />
     </UButton>
 
     <UModal v-model:open="showSheet" :title="$t('qr.chooseIcon')">
@@ -75,7 +75,7 @@ function selectIcon(icon: string) {
         </div>
         <div class="overflow-y-auto" style="max-height: 60vh;">
           <div v-if="isLoading" class="p-4 text-center text-gray-500">
-            <span class="animate-spin inline-block"><Icon icon="tabler:loader-2" class="w-6 h-6" /></span>
+            <span class="animate-spin inline-block"><Icon icon="mingcute:loading-line" class="w-6 h-6" /></span>
             {{ $t('qr.loadingIcons') }}
           </div>
           <div v-else-if="filteredIcons.length === 0" class="p-4 text-center text-gray-500">
@@ -85,7 +85,7 @@ function selectIcon(icon: string) {
             <button v-for="icon in filteredIcons" :key="icon" @click="selectIcon(icon)"
               class="aspect-square rounded-xl flex items-center justify-center transition-all"
               :class="modelValue === icon ? 'bg-primary/10' : 'hover:bg-gray-50'">
-              <Icon :icon="'tabler:' + icon" class="w-6 h-6" />
+              <Icon :icon="'mingcute:' + icon" class="w-6 h-6" />
             </button>
           </div>
         </div>

@@ -11,12 +11,12 @@
             </p>
           </div>
           <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-end">
-            <UButton :to="`/l/${slug}`" target="_blank" icon="tabler:external-link">{{ $t('common.open') }}</UButton>
-            <UButton color="neutral" variant="soft" @click="copy(shortUrl)" icon="tabler:copy">{{ $t('qr.copyUrl') }}</UButton>
-            <UButton :color="link?.isActive ? 'success' : 'error'" variant="soft" :icon="link?.isActive ? 'tabler:toggle-right' : 'tabler:toggle-left'" @click="toggleActive" :disabled="toggling">
+            <UButton :to="`/l/${slug}`" target="_blank" icon="mingcute:external-link-line">{{ $t('common.open') }}</UButton>
+            <UButton color="neutral" variant="soft" @click="copy(shortUrl)" icon="mingcute:copy-2-line">{{ $t('qr.copyUrl') }}</UButton>
+            <UButton :color="link?.isActive ? 'success' : 'error'" variant="soft" :icon="link?.isActive ? 'mingcute:toggle-right-line' : 'mingcute:toggle-left-line'" @click="toggleActive" :disabled="toggling">
               {{ link?.isActive ? $t('status.activated') : $t('status.disabled') }}
             </UButton>
-            <UButton color="error" variant="soft" icon="tabler:trash" @click="removeLink" :disabled="deleting">{{ $t('common.delete') }}</UButton>
+            <UButton color="error" variant="soft" icon="mingcute:delete-2-line" @click="removeLink" :disabled="deleting">{{ $t('common.delete') }}</UButton>
           </div>
         </div>
       </template>
@@ -363,7 +363,7 @@ async function draw() {
       } else if (overlaySource.value === 'icon') {
         if (selectedIcon.value) {
           const color = encodeURIComponent(foreground.value)
-          src = `https://api.iconify.design/tabler:${selectedIcon.value}.svg?color=${color}`
+          src = `https://api.iconify.design/mingcute:${selectedIcon.value}.svg?color=${color}`
         }
       }
       if (src) {
@@ -447,7 +447,7 @@ function overlayImageUrl(): string | undefined {
   }
   if (overlaySource.value === 'icon' && selectedIcon.value) {
     const color = encodeURIComponent(foreground.value)
-    return `https://api.iconify.design/tabler:${selectedIcon.value}.svg?color=${color}`
+    return `https://api.iconify.design/mingcute:${selectedIcon.value}.svg?color=${color}`
   }
   return undefined
 }
@@ -501,7 +501,7 @@ async function withSvgOverlay(svg: string): Promise<string> {
   } else if (overlaySource.value === 'icon') {
     if (selectedIcon.value) {
       const color = encodeURIComponent(foreground.value)
-      src = `https://api.iconify.design/tabler:${selectedIcon.value}.svg?color=${color}`
+      src = `https://api.iconify.design/mingcute:${selectedIcon.value}.svg?color=${color}`
       const size = Math.round((overlaySizePercent.value / 100) * qrSize.value)
       const x = Math.round((qrSize.value - size) / 2)
       const y = Math.round((qrSize.value - size) / 2)
