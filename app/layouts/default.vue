@@ -1,7 +1,7 @@
 <template>
   <UDashboardGroup>
     <UDashboardSidebar class="w-64 pt-2">
-      <UButton :to="'/generate'" icon="tabler:plus">
+      <UButton :to="'/generate'" icon="mingcute:add-line">
         {{ $t('nav.create') }}
       </UButton>
       <UNavigationMenu :items="navigationMenu" orientation="vertical" />
@@ -42,11 +42,11 @@ const navigationMenu = computed<NavigationMenuItem[]>(() => {
     {
       label: t('nav.home'),
       to: '/',
-      icon: 'tabler:home',
+      icon: 'mingcute:home-3-line',
     },
     {
       label: t('nav.myQRCodes'),
-      icon: 'tabler:qrcode',
+      icon: 'mingcute:qrcode-line',
       badge: links.value.length || 0,
       defaultOpen: true,
       children: links.value.map((link) => ({
@@ -59,11 +59,11 @@ const navigationMenu = computed<NavigationMenuItem[]>(() => {
     base.push({
       label: t('admin.section'),
       to: '/admin',
-      icon: 'tabler:shield-lock',
+      icon: 'mingcute:shield-line',
       defaultOpen: true,
       children: [
-        { label: t('admin.qrList'), to: '/admin/qr-list', icon: 'tabler:list-details' },
-        { label: t('admin.brand'), to: '/admin/brand', icon: 'tabler:brand-appgallery' },
+        { label: t('admin.qrList'), to: '/admin/qr-list', icon: 'mingcute:list-check-line' },
+        { label: t('admin.brand'), to: '/admin/brand', icon: 'mingcute:grid-line' },
       ],
     })
   }

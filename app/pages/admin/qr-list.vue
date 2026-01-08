@@ -2,7 +2,7 @@
   <div class="container mx-auto p-4 space-y-4">
     <div class="flex items-center justify-between gap-2 flex-col sm:flex-row">
       <h1 class="text-2xl font-bold">{{ $t('admin.qrList') }}</h1>
-      <UInput v-model="q" :placeholder="$t('admin.search')" icon="tabler:search" class="w-full sm:w-64" />
+      <UInput v-model="q" :placeholder="$t('admin.search')" icon="mingcute:search-line" class="w-full sm:w-64" />
     </div>
 
     <UCard>
@@ -19,8 +19,8 @@
         </template>
         <template #actions-cell="{ row }">
           <div class="flex items-center gap-2">
-            <UButton size="xs" :to="`/qr/${row.original.slug}`" icon="tabler:qrcode">{{ $t('common.manage') }}</UButton>
-            <UButton size="xs" color="neutral" variant="soft" @click="() => toggle(row.original)" :icon="row.original.isActive ? 'tabler:toggle-right' : 'tabler:toggle-left'">
+            <UButton size="xs" :to="`/qr/${row.original.slug}`" icon="mingcute:qrcode-line">{{ $t('common.manage') }}</UButton>
+            <UButton size="xs" color="neutral" variant="soft" @click="() => toggle(row.original)" :icon="row.original.isActive ? 'mingcute:toggle-right-line' : 'mingcute:toggle-left-line'">
               {{ row.original.isActive ? $t('admin.deactivate') : $t('admin.activate') }}
             </UButton>
             <UButton size="xs" color="error" variant="soft" @click="() => del(row.original)"> {{ $t('admin.delete') }} </UButton>

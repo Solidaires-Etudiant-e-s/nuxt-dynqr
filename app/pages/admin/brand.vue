@@ -6,12 +6,12 @@
       <template #header>
         <div class="flex items-center justify-between gap-2 flex-col sm:flex-row">
           <div class="flex items-center gap-2">
-            <UIcon name="tabler:brand-appgallery" />
+            <UIcon name="mingcute:grid-line" />
             <span>{{ $t('admin.logos') }}</span>
           </div>
           <div class="flex items-center gap-2">
             <input type="file" ref="multiRef" class="hidden" accept="image/*" multiple @change="onPickMulti" />
-            <UButton :loading="uploading" :disabled="uploading" icon="tabler:upload" @click="() => multiRef?.click()">{{ $t('admin.uploadImages') }}</UButton>
+            <UButton :loading="uploading" :disabled="uploading" icon="mingcute:upload-line" @click="() => multiRef?.click()">{{ $t('admin.uploadImages') }}</UButton>
           </div>
         </div>
       </template>
@@ -21,7 +21,7 @@
           <div v-for="img in images" :key="img.id" class="border rounded p-2 flex flex-col items-center gap-2 bg-white">
             <img :src="img.imageUrl" class="h-16 object-contain" />
             <div class="flex items-center gap-2">
-              <UButton size="xs" color="error" variant="soft" icon="tabler:trash" @click="() => deleteImage(img.id)">{{ $t('common.delete') }}</UButton>
+              <UButton size="xs" color="error" variant="soft" icon="mingcute:delete-2-line" @click="() => deleteImage(img.id)">{{ $t('common.delete') }}</UButton>
             </div>
           </div>
         </template>
@@ -41,7 +41,7 @@
         <UInput v-model="bgColor" type="color" />
       </div>
       <div class="mt-3">
-        <UButton :loading="savingColors" @click="saveColors" icon="tabler:device-floppy">{{ $t('common.save') }}</UButton>
+        <UButton :loading="savingColors" @click="saveColors" icon="mingcute:save-line">{{ $t('common.save') }}</UButton>
       </div>
     </UCard>
 
