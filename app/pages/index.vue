@@ -39,7 +39,7 @@
 const { links, refresh } = useLinks()
 const { t } = useI18n()
 
-const { data: me } = useFetch('/api/me', {lazy: true, {server: false})
+const { data: me } = useFetch('/api/me', {lazy: true, server: false})
 const nameDisplay = computed(() => me.value?.username )
 
 const totalViews = computed(() => links.value.reduce((acc, l) => acc + (l.visitCount || 0), 0))
