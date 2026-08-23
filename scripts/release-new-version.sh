@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="Solidaires-Etudiant-e-s/nuxt-dynqr"
+REPO="Solidaires-Etudiant-e-s/SoliQrCode"
 MANIFEST="../SoliQrCode_ynh/manifest.toml"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"

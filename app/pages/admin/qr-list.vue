@@ -83,10 +83,14 @@ const filtered = computed(() => {
 
 function toggle(row: any) {
   toggleActive(row.id, !!row.isActive)
+  umTrackEvent('admin-toggle-active', { slug: row.slug, active: !row.isActive })
 }
 
 function del(row: any) {
-  if (confirm('Supprimer ce lien ?')) remove(row.id)
+  if (confirm('Supprimer ce lien ?')) {
+    remove(row.id)
+    umTrackEvent('admin-delete', { slug: row.slug })
+  }
 }
 
 onMounted(async () => {

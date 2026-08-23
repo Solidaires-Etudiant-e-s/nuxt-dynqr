@@ -12,7 +12,7 @@
           </div>
           <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-end">
             <UButton :to="`/l/${slug}`" target="_blank" icon="mingcute:external-link-line">{{ $t('common.open') }}</UButton>
-            <UButton color="neutral" variant="soft" @click="copy(shortUrl)" icon="mingcute:copy-2-line">{{ $t('qr.copyUrl') }}</UButton>
+            <UButton color="neutral" variant="soft" @click="onCopyShort" icon="mingcute:copy-2-line">{{ $t('qr.copyUrl') }}</UButton>
             <UButton :color="link?.isActive ? 'success' : 'error'" variant="soft" :icon="link?.isActive ? 'mingcute:toggle-right-line' : 'mingcute:toggle-left-line'" @click="toggleActive" :disabled="toggling">
               {{ link?.isActive ? $t('status.activated') : $t('status.disabled') }}
             </UButton>
@@ -293,6 +293,7 @@ async function save() {
   try {
     const updated = await $fetch<Link>(`/api/links/${slug.value}`, { method: 'PATCH', body: { url: edit.url, title: edit.title } })
     link.value = updated
+    umTrackEvent('qr-edit-save', { slug: slug.value })
   } catch (err: any) {
     // surface minimal error, UI could be improved later
     errors.url = err?.data?.statusMessage || err?.message || 'Update failed'
@@ -307,6 +308,7 @@ async function toggleActive() {
   try {
     const updated = await $fetch<Link>(`/api/links/${slug.value}`, { method: 'PATCH', body: { isActive: !link.value.isActive } })
     link.value = updated
+    umTrackEvent('qr-toggle-active', { slug: slug.value, active: updated.isActive })
   } catch (err) {
     // ignore or surface a toast later
   } finally {
@@ -321,6 +323,7 @@ async function removeLink() {
   try {
     const res = await $fetch<{ deleted: number }>(`/api/links/${slug.value}`, { method: 'DELETE' })
     if (res?.deleted) {
+      umTrackEvent('qr-delete', { slug: slug.value })
       await navigateTo('/')
     }
   } catch (err) {
@@ -420,6 +423,7 @@ async function downloadPNG() {
   a.download = `${slug.value}.png`
   a.click()
   URL.revokeObjectURL(url)
+  umTrackEvent('qr-download', { slug: slug.value, format: 'png' })
 }
 
 async function downloadSVG() {
@@ -432,6 +436,7 @@ async function downloadSVG() {
   a.download = `${slug.value}.svg`
   a.click()
   URL.revokeObjectURL(url)
+  umTrackEvent('qr-download', { slug: slug.value, format: 'svg' })
 }
 
 function overlayImageUrl(): string | undefined {
@@ -545,7 +550,12 @@ function onOverlayPick(e: Event) {
 }
 
 async function copy(text: string) {
-  try { await navigator.clipboard.writeText(text) } catch (_) {}
+  try { return navigator.clipboard.writeText(text) } catch (_) { return Promise.resolve() }
+}
+
+async function onCopyShort() {
+  await copy(shortUrl.value)
+  umTrackEvent('qr-copy-url', { slug: slug.value })
 }
 
 const brandColorsApplied = ref(false)

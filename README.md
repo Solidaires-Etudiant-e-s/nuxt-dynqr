@@ -52,7 +52,7 @@ Configuration
 - Styling: @nuxt/ui theme (see `app/app.config.ts`)
 - i18n: English/French in `i18n/locales`
 - Database: Prisma models in `prisma/schema.prisma` (tables prefixed `dqr_`)
-- Analytics: Umami via `nuxt-umami` – set `UMAMI` (website ID) in `.env`, hosted at `https://umami.solidaires-etudiant-e-s.org`
+- Analytics: Umami via `nuxt-umami` – set `UMAMI` (website ID) in `.env`, hosted at `https://umami.solidaires-etudiant-e-s.org`. Tracks page views plus custom events: `qr-create`, `qr-edit-save`, `qr-toggle-active`, `qr-delete`, `qr-copy-url`, `qr-download`, `admin-toggle-active`, `admin-delete`, `brand-save-colors`, `brand-upload-images`, `brand-delete-image`. The `/l/[slug]` redirect is tracked server-side (every QR scan/click) in `server/utils/umami.ts`.
 
 Authentication & Roles
 - Requests behind YunoHost SSO should include `YNH_USER` (set by SSOwat) and `Authorization: Basic ...` for LDAP (checked server-side) to resolve user role: `admin` or `user`.

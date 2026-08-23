@@ -1,6 +1,7 @@
 import { defineEventHandler, sendRedirect, createError, sendError } from 'h3';
 import { prisma } from '../../db/prisma';
 import { sanitizeHttpUrl } from '../../utils/url';
+import { trackUmamiEvent } from '../../utils/umami';
 
 export default defineEventHandler(async (event) => {
   try {
@@ -17,6 +18,9 @@ export default defineEventHandler(async (event) => {
     prisma.dqr_links
       .update({ where: { id: link.id }, data: { visitCount: { increment: 1 } } })
       .catch(() => {});
+
+    // Record the redirect as an Umami event (every QR scan/click).
+    trackUmamiEvent(event, 'qr-redirect', { slug: link.slug, target: clean })
 
     return sendRedirect(event, clean, 302);
   } catch (err: any) {

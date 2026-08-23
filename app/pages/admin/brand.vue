@@ -82,7 +82,7 @@ useHead(() => ({
 
 async function saveColors() {
   savingColors.value = true
-  try { await updateColors({ fgColor: fgColor.value, bgColor: bgColor.value }) } finally { savingColors.value = false }
+  try { await updateColors({ fgColor: fgColor.value, bgColor: bgColor.value }); umTrackEvent('brand-save-colors') } finally { savingColors.value = false }
 }
 
 async function onPickMulti(e: Event) {
@@ -90,7 +90,7 @@ async function onPickMulti(e: Event) {
   const files = Array.from(input.files || [])
   if (files.length) {
     uploading.value = true
-    try { await uploadImages(files) } finally { uploading.value = false }
+    try { await uploadImages(files); umTrackEvent('brand-upload-images', { count: files.length }) } finally { uploading.value = false }
   }
   if (multiRef.value) multiRef.value.value = ''
 }

@@ -115,6 +115,7 @@ async function onSubmit() {
     const res = await $fetch<CreatedLink>('/api/links', { method: 'POST', body })
     // add to global links list so layout updates immediately
     add(res as any)
+    umTrackEvent('qr-create', { slug: res.slug, hasTitle: !!form.title })
     onReset(false)
     await navigateTo(`/qr/${res.slug}`)
   } catch (err: any) {

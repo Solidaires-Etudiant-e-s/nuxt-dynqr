@@ -59,6 +59,7 @@ export function useBrand() {
   async function deleteImage(id: number) {
     await $fetch(`/api/admin/brand/images/${id}`, { method: 'DELETE' })
     images.value = images.value.filter(i => i.id !== id)
+    umTrackEvent('brand-delete-image', { id })
   }
 
   return { brand, images, refreshAdmin, refreshPublic, setBrand, clearBrand, updateColors, refreshImagesAdmin, refreshImagesPublic, uploadImages, deleteImage }

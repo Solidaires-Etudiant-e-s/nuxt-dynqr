@@ -3,7 +3,7 @@ set -euo pipefail
 
 HOST="webmestres@solidaires-etudiant-e-s.org"
 APP="nuxt-dynqr"
-YNH_REPO="https://github.com/Solidaires-Etudiant-e-s/nuxt-dynqr_ynh"
+YNH_REPO="https://github.com/Solidaires-Etudiant-e-s/SoliQrCode_ynh"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
 
