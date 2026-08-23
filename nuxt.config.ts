@@ -2,7 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/i18n'],
+  modules: ['@nuxt/ui', '@nuxt/image', '@nuxtjs/i18n', 'nuxt-umami'],
   css: ['~/assets/css/main.css'],
   app: {
     head: {
@@ -17,5 +17,12 @@ export default defineNuxtConfig({
       { code: 'fr', file: 'fr.json' }
     ],
     defaultLocale: 'en',
+  },
+
+  umami: {
+    id: process.env.UMAMI,
+    host: 'https://umami.solidaires-etudiant-e-s.org',
+    autoTrack: true,
+    ignoreLocalhost: true
   }
 })

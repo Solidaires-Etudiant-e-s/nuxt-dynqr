@@ -1,5 +1,5 @@
 {
-  "app": { "title": "Nuxt DynQR" },
+  "app": { "title": "SoliQrCode" },
   "nav": {
     "home": "Home",
     "myQRCodes": "My QR Codes",

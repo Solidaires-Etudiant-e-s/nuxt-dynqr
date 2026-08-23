@@ -1,6 +1,6 @@
-# Nuxt DynQR
+# SoliQrCode
 
-Generate, brand, and manage short QR links with a modern Nuxt 4 UI. Nuxt DynQR lets users create short slugs that redirect to external URLs, customize and download QR codes (PNG/SVG), and optionally apply organization branding. Admins can manage all links and upload brand images.
+Generate, brand, and manage short QR links with a modern Nuxt 4 UI. SoliQrCode lets users create short slugs that redirect to external URLs, customize and download QR codes (PNG/SVG), and optionally apply organization branding. Admins can manage all links and upload brand images.
 
 Features
 - Nuxt 4 + @nuxt/ui dashboard shell (mobile friendly)
@@ -48,10 +48,11 @@ bun preview        # production preview
 ```
 
 Configuration
-- Modules: `@nuxt/ui`, `@nuxt/image`, `@nuxtjs/i18n`
+- Modules: `@nuxt/ui`, `@nuxt/image`, `@nuxtjs/i18n`, `nuxt-umami`
 - Styling: @nuxt/ui theme (see `app/app.config.ts`)
 - i18n: English/French in `i18n/locales`
 - Database: Prisma models in `prisma/schema.prisma` (tables prefixed `dqr_`)
+- Analytics: Umami via `nuxt-umami` – set `UMAMI` (website ID) in `.env`, hosted at `https://umami.solidaires-etudiant-e-s.org`
 
 Authentication & Roles
 - Requests behind YunoHost SSO should include `YNH_USER` (set by SSOwat) and `Authorization: Basic ...` for LDAP (checked server-side) to resolve user role: `admin` or `user`.
